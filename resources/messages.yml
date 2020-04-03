@@ -1,0 +1,7 @@
+# EssentialsEV messages config
+# Thanks for using Evelire Studio's plugins
+
+command.mustbeplayer: "&4Only player can use this command!"
+
+command.gamemode.wrongmode: "&4Gamemode must be from 0 to 3!"
+command.gamemode.successful: "&aYour gamemode successfully changed to @gamemode"

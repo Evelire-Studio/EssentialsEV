@@ -1,5 +1,5 @@
 name: EssentialsEV
-main: essentialsev\Loader
+main: essentialsev\EssentialsEV
 version: "0.1"
 author: "Evelire Studio"
 api: [3.0.0]

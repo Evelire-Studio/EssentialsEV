@@ -11,13 +11,17 @@ use function implode;
 class Loader extends PluginBase{
     public function onEnable(){
         $this->getLogger()->info(TF::LIGHT_PURPLE . "EssentialsEV Enabled");
-        $this->getLogger()->info($this->getCredits());
+        $this->showCredits();
     }
 
-    public function getCredits() : string{
-        return implode("\n", [
+    public function showCredits(){
+        $credits = [
             TF::AQUA . "Thanks for using Evelire Studio plugins!",
             TF::BLUE . "VK: " . $this->getDescription()->getWebsite()
-        ]);
+        ];
+
+        foreach($credits as $credit){
+            $this->getLogger()->info($credit);
+        }
     }
 }

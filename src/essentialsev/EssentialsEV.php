@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace essentialsev;
 
+use essentialsev\command\DayCommand;
+use essentialsev\command\FeedCommand;
 use essentialsev\command\GamemodeCommand;
+use essentialsev\command\HealCommand;
+use essentialsev\command\NightCommand;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat as TF;
@@ -49,7 +53,11 @@ class EssentialsEV extends PluginBase{
         }
 
         $this->getServer()->getCommandMap()->registerAll("EssentialsEV", [
-            new GamemodeCommand()
+            new GamemodeCommand(),
+            new HealCommand(),
+            new FeedCommand(),
+            new DayCommand(),
+            new NightCommand()
         ]);
     }
 

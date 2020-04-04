@@ -14,7 +14,7 @@ use function count;
 
 class GamemodeCommand extends Command{
     public function __construct(){
-        parent::__construct("gamemode", "Change your gamemode easily", null, ["gm"]);
+        parent::__construct("gamemode", EssentialsEV::translate("command.gamemode.description"), null, ["gm"]);
 
         $this->setPermission("essentialsev.command.gamemode");
     }

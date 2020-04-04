@@ -3,5 +3,20 @@
 
 command.mustbeplayer: "&4Only player can use this command!"
 
+command.gamemode.description: "Change your gamemode easily"
 command.gamemode.wrongmode: "&4Gamemode must be from 0 to 3!"
-command.gamemode.successful: "&aYour gamemode successfully changed to @gamemode"
+command.gamemode.successful: "&aYour gamemode has been successfully changed to @gamemode"
+
+command.heal.description: "Restore all health"
+command.heal.successful: "&aYou have successfully restored your health"
+
+command.feed.description: "Restore hunger"
+command.feed.successful: "&2You have successfully restored your hunger"
+
+command.day.description: "Set time in your world to day"
+command.day.unknownworld: "&4World with name @world doesn't exists!"
+command.day.successful: "&2Time in the world has successfully set to day"
+
+command.night.description: "Set time in your world to night"
+command.night.unknownworld: "&4World with name @world doesn't exists!"
+command.night.successful: "&2Time in the world has successfully set to night"

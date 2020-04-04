@@ -2,6 +2,7 @@
 # Thanks for using Evelire Studio's plugins
 
 command.mustbeplayer: "&4Only player can use this command!"
+command.noplayer: "&4Player with nickname @nick is offline"
 
 command.gamemode.description: "Change your gamemode easily"
 command.gamemode.wrongmode: "&4Gamemode must be from 0 to 3!"
@@ -20,3 +21,6 @@ command.day.successful: "&2Time in the world has successfully set to day"
 command.night.description: "Set time in your world to night"
 command.night.unknownworld: "&4World with name @world doesn't exists!"
 command.night.successful: "&2Time in the world has successfully set to night"
+
+command.burn.description: "Burn all players :D"
+command.burn.successful: "&aPlayer @nick successfully set on fire"

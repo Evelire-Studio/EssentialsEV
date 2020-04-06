@@ -27,3 +27,9 @@ command.burn.successful: "&aPlayer @nick successfully set on fire"
 
 command.clearinventory.description: "Clear your inventory!"
 command.clearinventory.successful: "&2You have successfully cleared your inventory"
+
+command.setspawn.description: "Set server spawn"
+command.setspawn.successful: "&2Server spawn successfully installed"
+
+command.spawn.description: "Teleport to spawn"
+command.spawn.successful: "&2You have successfully teleported to spawn"

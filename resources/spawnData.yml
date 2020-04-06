@@ -1,0 +1,10 @@
+# Do not touch that with your hands!
+# Use /setspawn instead
+
+spawn:
+  x: 0
+  yy: 0
+  z: 0
+  yaw: 0
+  pitch: 0
+  level: world

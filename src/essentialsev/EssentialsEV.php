@@ -11,22 +11,43 @@ use essentialsev\command\FeedCommand;
 use essentialsev\command\GamemodeCommand;
 use essentialsev\command\HealCommand;
 use essentialsev\command\NightCommand;
+use essentialsev\command\SetSpawnCommand;
+use essentialsev\command\SpawnCommand;
 use essentialsev\listener\EssentialsListener;
+use pocketmine\level\Location;
+use pocketmine\level\Position;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat as TF;
+use function array_slice;
+use function array_sum;
 use function sprintf;
 use function str_replace;
 
 class EssentialsEV extends PluginBase{
+    /** @var self */
+    protected static $instance;
+
     /** @var string[] */
     protected static $messages = [];
 
     /** @var bool */
     protected static $increaseArrowMotion;
+    /** @var Position|Location */
+    protected static $spawn;
+
+    /**
+     * @return EssentialsEV
+     */
+    public static function getInstance() : self{
+        return self::$instance;
+    }
 
     public function onEnable(){
+        self::$instance = $this;
+
         $this->loadConfig();
+        $this->loadSpawnData();
         $this->loadMessages();
         $this->registerCommands();
 
@@ -42,6 +63,26 @@ class EssentialsEV extends PluginBase{
         $config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 
         self::$increaseArrowMotion = $config->getNested("bow.increase-arrow-motion", true);
+    }
+
+    public function loadSpawnData(){
+        $this->saveResource("spawnData.yml", false);
+
+        $config = new Config($this->getDataFolder() . "spawnData.yml", Config::YAML);
+
+        //TODO: invalid config can cause crash
+        if(array_sum(array_slice($config->getAll()["spawn"], 0, 5)) !== 0){
+            self::$spawn = new Location(
+                $config->getNested("spawn.x"),
+                $config->getNested("spawn.yy"),
+                $config->getNested("spawn.z"),
+                $config->getNested("spawn.yaw"),
+                $config->getNested("spawn.pitch"),
+                $this->getServer()->getLevelByName($config->getNested("spawn.level"))
+            );
+        }else{
+            self::$spawn = $this->getServer()->getDefaultLevel()->getSafeSpawn();
+        }
     }
 
     public function loadMessages(){
@@ -76,7 +117,9 @@ class EssentialsEV extends PluginBase{
             new DayCommand(),
             new NightCommand(),
             new BurnCommand(),
-            new ClearInventoryCommand()
+            new ClearInventoryCommand(),
+            new SetSpawnCommand(),
+            new SpawnCommand()
         ]);
     }
 
@@ -110,5 +153,19 @@ class EssentialsEV extends PluginBase{
      */
     public static function isIncreaseArrowMotion() : bool{
         return self::$increaseArrowMotion;
+    }
+
+    /**
+     * @return Location|Position
+     */
+    public static function getSpawn(){
+        return self::$spawn;
+    }
+
+    /**
+     * @param Location|Position $spawn
+     */
+    public static function setSpawn($spawn){
+        self::$spawn = $spawn;
     }
 }

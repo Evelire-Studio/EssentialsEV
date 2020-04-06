@@ -10,6 +10,7 @@ use essentialsev\command\FeedCommand;
 use essentialsev\command\GamemodeCommand;
 use essentialsev\command\HealCommand;
 use essentialsev\command\NightCommand;
+use essentialsev\listener\EssentialsListener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat as TF;
@@ -20,12 +21,26 @@ class EssentialsEV extends PluginBase{
     /** @var string[] */
     protected static $messages = [];
 
+    /** @var bool */
+    protected static $increaseArrowMotion;
+
     public function onEnable(){
+        $this->loadConfig();
         $this->loadMessages();
         $this->registerCommands();
 
+        $this->getServer()->getPluginManager()->registerEvents(new EssentialsListener(), $this);
+
         $this->getLogger()->info(TF::LIGHT_PURPLE . "EssentialsEV Enabled");
         $this->showCredits();
+    }
+
+    public function loadConfig(){
+        $this->saveResource("config.yml", false);
+
+        $config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+
+        self::$increaseArrowMotion = $config->getNested("bow.increase-arrow-motion", true);
     }
 
     public function loadMessages(){
@@ -86,5 +101,12 @@ class EssentialsEV extends PluginBase{
         foreach($credits as $credit){
             $this->getLogger()->info($credit);
         }
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isIncreaseArrowMotion() : bool{
+        return self::$increaseArrowMotion;
     }
 }

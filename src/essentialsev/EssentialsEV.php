@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace essentialsev;
 
 use essentialsev\command\BurnCommand;
+use essentialsev\command\ClearInventoryCommand;
 use essentialsev\command\DayCommand;
 use essentialsev\command\FeedCommand;
 use essentialsev\command\GamemodeCommand;
@@ -74,7 +75,8 @@ class EssentialsEV extends PluginBase{
             new FeedCommand(),
             new DayCommand(),
             new NightCommand(),
-            new BurnCommand()
+            new BurnCommand(),
+            new ClearInventoryCommand()
         ]);
     }
 
